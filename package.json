@@ -1,0 +1,40 @@
+{
+  "name": "fp-army-knife",
+  "version": "0.0.1",
+  "description": "fp-army-knife",
+  "main": "lib/index.js",
+  "module": "es6/index.js",
+  "typings": "lib/index.d.ts",
+  "author": "Stefano Regosa <regosas@gmail.com>",
+  "sideEffects": false,
+  "scripts": {
+    "lint": "eslint ./src",
+    "jest-clear-cache": "jest --clearCache",
+    "prettier": "prettier --list-different \"./{src,test}/*.ts\"",
+    "fix-prettier": "prettier --write \"./{src,test}/**/*.ts\"",
+    "jest": "jest",
+    "test": "npm run lint && npm run prettier && npm run jest-clear-cache && npm run jest && npm run docs",
+    "clean": "rimraf ./dist",
+    "prebuild": "npm run clean",
+    "build": "tsc -p ./tsconfig.build.json && tsc -p ./tsconfig.build-es6.json && ts-node scripts/build",
+    "postbuild": "prettier --loglevel=silent --write \"./dist/**/*.ts\"",
+    "prepublishOnly": "ts-node scripts/pre-publish",
+    "doctoc": "doctoc README.md --title \"**Table of contents**\"",
+    "docs": "docs-ts && cp CHANGELOG.md ./docs"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "docs-ts": "^0.5.1",
+    "doctoc": "^1.4.0",
+    "eslint": "^7.18.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "fp-ts": "^2.9.3",
+    "pattern-matching-ts": "^2.0.0"
+  }
+}
