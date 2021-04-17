@@ -8,7 +8,6 @@ export const ERROR = {
   NULL_OR_UNDEFINED: 'NULL_OR_UNDEFINED'
 } as const
 
-
 type CustomErrorsMessage = typeof ERROR[keyof typeof ERROR]
 const splitByDots = (s: string): E.Either<Error, ReadonlyArray<string>> => E.right(s.split('.'))
 
