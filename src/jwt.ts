@@ -33,7 +33,7 @@ const takeSecondElement = <T>(xs: ReadonlyArray<T>): E.Either<Error, T> =>
 const replaceWithPlusSign = (c: string): string => c.replace(/-/g, '+')
 const replaceWithSlashSign = (c: string): string => c.replace(/_/g, '/')
 
-export const decode: (jwt: string) => E.Either<unknown, unknown> = (jwt) =>
+export const decode: (jwt: string) => E.Either<unknown,unknown> = (jwt) =>
   pipe(
     jwt,
     E.fromNullable(new Error(ERROR.NULL_OR_UNDEFINED)),

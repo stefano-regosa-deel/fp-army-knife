@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1618648833343" clover="3.2.0">
+  <project timestamp="1618648833343" name="All files">
+    <metrics statements="19" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="10" elements="30" coveredelements="28" complexity="0" loc="19" ncloc="19" packages="1" files="1" classes="1"/>
+    <file name="jwt.ts" path="/Users/nrdlab/Project/personal/fp-army-knife/src/jwt.ts">
+      <metrics statements="19" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="10"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="24" count="3" type="stmt"/>
+      <line num="26" count="2" type="stmt"/>
+      <line num="28" count="2" type="stmt"/>
+      <line num="30" count="1" type="stmt"/>
+      <line num="31" count="3" type="stmt"/>
+      <line num="33" count="2" type="stmt"/>
+      <line num="34" count="2" type="stmt"/>
+      <line num="36" count="1" type="stmt"/>
+      <line num="37" count="3" type="stmt"/>
+      <line num="47" count="1" type="stmt"/>
+      <line num="48" count="3" type="stmt"/>
+      <line num="51" count="3" type="stmt"/>
+      <line num="52" count="0" type="stmt"/>
+    </file>
+  </project>
+</coverage>
