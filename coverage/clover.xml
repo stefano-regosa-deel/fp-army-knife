@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1618668184891" clover="3.2.0">
-  <project timestamp="1618668184891" name="All files">
+<coverage generated="1618671363969" clover="3.2.0">
+  <project timestamp="1618671363969" name="All files">
     <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8" elements="23" coveredelements="23" complexity="0" loc="15" ncloc="15" packages="1" files="1" classes="1"/>
     <file name="jwt.ts" path="/Users/stefano/Project/personal/fp-army-knife/src/jwt.ts">
       <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8"/>
@@ -9,16 +9,16 @@
       <line num="3" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
       <line num="6" count="1" type="stmt"/>
-      <line num="12" count="3" type="stmt"/>
-      <line num="14" count="2" type="stmt"/>
-      <line num="16" count="2" type="stmt"/>
-      <line num="18" count="1" type="stmt"/>
-      <line num="19" count="3" type="stmt"/>
-      <line num="21" count="2" type="stmt"/>
+      <line num="13" count="3" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="17" count="2" type="stmt"/>
+      <line num="19" count="1" type="stmt"/>
+      <line num="20" count="3" type="stmt"/>
       <line num="22" count="2" type="stmt"/>
-      <line num="24" count="1" type="stmt"/>
-      <line num="25" count="3" type="stmt"/>
-      <line num="35" count="1" type="stmt"/>
+      <line num="23" count="2" type="stmt"/>
+      <line num="25" count="1" type="stmt"/>
+      <line num="26" count="3" type="stmt"/>
+      <line num="36" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>

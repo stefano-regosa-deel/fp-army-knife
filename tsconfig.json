@@ -7,6 +7,7 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "lib": ["es6", "dom"],
+    "declaration": true,
     "sourceMap": false,
     "strict": true,
     "noImplicitReturns": true,
@@ -18,5 +19,5 @@
     "resolveJsonModule": true,
     "noImplicitAny": true
   },
-  "include": ["./src", "./test", "./scripts"]
+  "include": ["./src", "./test", "./scripts", "src/ERROR.ts"]
 }
