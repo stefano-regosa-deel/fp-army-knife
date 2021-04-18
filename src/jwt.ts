@@ -1,4 +1,5 @@
 import { pipe, flow } from 'fp-ts/function'
+import * as jwt from 'jsonwebtoken'
 import * as E from 'fp-ts/Either'
 import * as A from 'fp-ts/Array'
 import * as J from 'fp-ts/Json'
@@ -32,6 +33,13 @@ const decode: <A = unknown>(jwt: string) => E.Either<CustomErrorsMessage | Synta
     E.chain(J.parse as <A>(jwt: string) => E.Either<SyntaxError, A>)
   ) as E.Either<CustomErrorsMessage | SyntaxError, any>
 
+const encode = (payload: unknown) =>
+  pipe(
+    payload,
+    E.fromNullable(new Error(ERROR.NULL_OR_UNDEFINED)),
+    E.map((payload) => jwt.sign(payload as Buffer, 'S'))
+  )
 export const Jwt = {
-  decode
+  decode,
+  encode
 }
