@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>25/25</span>
+                <span class='fraction'>30/30</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/19</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -102,7 +102,25 @@
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -126,7 +144,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,11 +161,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { pipe, flow } from 'fp-ts/function'
+import * as M from 'pattern-matching-ts/match'
 import * as jwt from 'jsonwebtoken'
 import * as E from 'fp-ts/Either'
 import * as A from 'fp-ts/Array'
@@ -158,7 +193,7 @@ export const ERROR = {
   NULL_OR_UNDEFINED: 'NULL_OR_UNDEFINED'
 } as const
 &nbsp;
-type CustomErrorsMessage = typeof ERROR[keyof typeof ERROR]
+export type CustomErrorsMessage = typeof ERROR[keyof typeof ERROR]
 const splitByDots = (s: string): E.Either&lt;Error, ReadonlyArray&lt;string&gt;&gt; =&gt; E.right(s.split('.'))
 &nbsp;
 const BufferFromb64Encoded = (b64Encoded: string): string =&gt; Buffer.from(b64Encoded, 'base64').toString()
@@ -171,9 +206,9 @@ const takeSecondElement = &lt;T&gt;(xs: ReadonlyArray&lt;T&gt;): E.Either&lt;Err
 const replaceDashWithPlus = (c: string): string =&gt; c.replace(/-/g, '+')
 const replaceUnderscoreWithSlash = (c: string): string =&gt; c.replace(/_/g, '/')
 &nbsp;
-const decode: &lt;A = unknown&gt;(jwt: string) =&gt; E.Either&lt;CustomErrorsMessage | SyntaxError, A&gt; = (jwt: string) =&gt;
+const decode: &lt;A = unknown&gt;(v: Decode) =&gt; E.Either&lt;CustomErrorsMessage | SyntaxError, A&gt; = ({ value }) =&gt;
   pipe(
-    jwt,
+    value,
     E.fromNullable(new Error(ERROR.NULL_OR_UNDEFINED)),
     E.chain(splitByDots),
     E.chain(takeSecondElement),
@@ -182,16 +217,32 @@ const decode: &lt;A = unknown&gt;(jwt: string) =&gt; E.Either&lt;CustomErrorsMes
     E.chain(J.parse as &lt;A&gt;(jwt: string) =&gt; E.Either&lt;SyntaxError, A&gt;)
   ) as E.Either&lt;CustomErrorsMessage | SyntaxError, any&gt;
 &nbsp;
-const encode = (payload: unknown) =&gt;
+const encode: (value: Encode&lt;unknown&gt;) =&gt; E.Either&lt;Error, string&gt; = ({ value }) =&gt;
   pipe(
-    payload,
+    value,
     E.fromNullable(new Error(ERROR.NULL_OR_UNDEFINED)),
-    E.map((payload) =&gt; jwt.sign(payload as Buffer, 'S'))
+    E.map((value) =&gt; jwt.sign(value as { data: Buffer }, 'S'))
   )
-export const Jwt = {
-  decode,
-  encode
+&nbsp;
+interface Decode {
+  action: 'DECODE'
+  value: string
 }
+interface Encode&lt;A&gt; {
+  action: 'ENCODE'
+  value: {
+    data: A
+  }
+}
+&nbsp;
+export const Jwt = &lt;A, R = string&gt;(actions: Decode | Encode&lt;A&gt;) =&gt;
+  pipe(
+    actions,
+    M.matchW('action')({
+      DECODE: decode,
+      ENCODE: encode
+    })
+  ) as E.Either&lt;CustomErrorsMessage | SyntaxError, R&gt;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -199,7 +250,7 @@ export const Jwt = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Apr 18 2021 02:53:25 GMT+0200 (Central European Summer Time)
+                at Tue Apr 20 2021 07:49:21 GMT+0200 (Central European Summer Time)
             </div>
         </div>
         <script src="prettify.js"></script>

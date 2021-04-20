@@ -1,6 +1,6 @@
 import * as E from 'fp-ts/Either'
 import { pipe } from 'fp-ts/lib/function'
-import { ERROR, Jwt } from '../src/jwt'
+import { CustomErrorsMessage, ERROR, Jwt } from '../src/jwt'
 
 describe('decode a JWT', () => {
   it('should handle null or undefined', () => {
@@ -20,25 +20,19 @@ describe('encode a JWT', () => {
     const decodedMock = {
       job: 'Senior Software Engineer',
       name: 'Stefano Regosa',
-      exp 
+      exp
     }
-    const encoded = Jwt<typeof decodedMock, string>({ action: 'ENCODE', value: decodedMock })
 
+    const encoded: E.Either<CustomErrorsMessage | SyntaxError, string> = Jwt<typeof decodedMock, string>({
+      action: 'ENCODE',
+      value: { data: decodedMock }
+    })
     const decoded = pipe(
       encoded,
-      E.chain((encoded) => Jwt<string, typeof decodedMock>({ action: 'DECODE', value: encoded }))
+      E.chain((encoded) => Jwt<string, { data: typeof decodedMock }>({ action: 'DECODE', value: encoded })),
+      E.map(({ data }) => data)
     )
+
     expect(decoded).toStrictEqual(E.right(decodedMock))
   })
-
-  //it('should handle nullable', () => {
-  // const encoded = Jwt.encode(null)
-
-  //  const decoded = pipe(
-  //    encoded,
-  //    E.chain((encoded) => Jwt.decode<{ data: any }>(encoded)),
-  //    E.map(({ data }) => data)
-  //  )
-  //  expect(decoded).toStrictEqual(E.left(new Error(ERROR.NULL_OR_UNDEFINED)))
-  //})
 })

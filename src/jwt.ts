@@ -10,7 +10,7 @@ export const ERROR = {
   NULL_OR_UNDEFINED: 'NULL_OR_UNDEFINED'
 } as const
 
-type CustomErrorsMessage = typeof ERROR[keyof typeof ERROR]
+export type CustomErrorsMessage = typeof ERROR[keyof typeof ERROR]
 const splitByDots = (s: string): E.Either<Error, ReadonlyArray<string>> => E.right(s.split('.'))
 
 const BufferFromb64Encoded = (b64Encoded: string): string => Buffer.from(b64Encoded, 'base64').toString()
@@ -23,9 +23,7 @@ const takeSecondElement = <T>(xs: ReadonlyArray<T>): E.Either<Error, T> =>
 const replaceDashWithPlus = (c: string): string => c.replace(/-/g, '+')
 const replaceUnderscoreWithSlash = (c: string): string => c.replace(/_/g, '/')
 
-const decode: <A = unknown>({ value }: { value: string }) => E.Either<CustomErrorsMessage | SyntaxError, A> = ({
-  value
-}) =>
+const decode: <A = unknown>(v: Decode) => E.Either<CustomErrorsMessage | SyntaxError, A> = ({ value }) =>
   pipe(
     value,
     E.fromNullable(new Error(ERROR.NULL_OR_UNDEFINED)),
@@ -36,19 +34,22 @@ const decode: <A = unknown>({ value }: { value: string }) => E.Either<CustomErro
     E.chain(J.parse as <A>(jwt: string) => E.Either<SyntaxError, A>)
   ) as E.Either<CustomErrorsMessage | SyntaxError, any>
 
-const encode = ({ value }: { value: unknown }) =>
+const encode: (value: Encode<unknown>) => E.Either<Error, string> = ({ value }) =>
   pipe(
     value,
     E.fromNullable(new Error(ERROR.NULL_OR_UNDEFINED)),
-    E.map((value) => jwt.sign(value as Buffer, 'S'))
+    E.map((value) => jwt.sign(value as { data: Buffer }, 'S'))
   )
+
 interface Decode {
   action: 'DECODE'
   value: string
 }
 interface Encode<A> {
   action: 'ENCODE'
-  value: A
+  value: {
+    data: A
+  }
 }
 
 export const Jwt = <A, R = string>(actions: Decode | Encode<A>) =>
