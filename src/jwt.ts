@@ -1,5 +1,4 @@
 import { pipe, flow } from 'fp-ts/function'
-import * as M from 'pattern-matching-ts/match'
 import * as jwt from 'jsonwebtoken'
 import * as E from 'fp-ts/Either'
 import * as A from 'fp-ts/Array'
@@ -23,7 +22,17 @@ const takeSecondElement = <T>(xs: ReadonlyArray<T>): E.Either<Error, T> =>
 const replaceDashWithPlus = (c: string): string => c.replace(/-/g, '+')
 const replaceUnderscoreWithSlash = (c: string): string => c.replace(/_/g, '/')
 
-const decode: <A = unknown>(v: Decode) => E.Either<CustomErrorsMessage | SyntaxError, A> = ({ value }) =>
+export interface Decode {
+  value: string
+}
+
+export interface Encode<A = unknown> {
+  value: {
+    data: A
+  }
+}
+
+const decode: <A>(v: Decode) => E.Either<CustomErrorsMessage | SyntaxError, Encode<A>['value']> = ({ value }) =>
   pipe(
     value,
     E.fromNullable(new Error(ERROR.NULL_OR_UNDEFINED)),
@@ -31,8 +40,8 @@ const decode: <A = unknown>(v: Decode) => E.Either<CustomErrorsMessage | SyntaxE
     E.chain(takeSecondElement),
     E.map(flow(replaceDashWithPlus, replaceUnderscoreWithSlash)),
     E.chain(fromBuffer),
-    E.chain(J.parse as <A>(jwt: string) => E.Either<SyntaxError, A>)
-  ) as E.Either<CustomErrorsMessage | SyntaxError, any>
+    E.chain(J.parse)
+  ) as E.Either<CustomErrorsMessage | SyntaxError, Encode<any>['value']>
 
 const encode: (value: Encode<unknown>) => E.Either<Error, string> = ({ value }) =>
   pipe(
@@ -41,22 +50,7 @@ const encode: (value: Encode<unknown>) => E.Either<Error, string> = ({ value }) 
     E.map((value) => jwt.sign(value as { data: Buffer }, 'S'))
   )
 
-interface Decode {
-  action: 'DECODE'
-  value: string
+export const Jwt = {
+  decode,
+  encode
 }
-interface Encode<A> {
-  action: 'ENCODE'
-  value: {
-    data: A
-  }
-}
-
-export const Jwt = <A, R = string>(actions: Decode | Encode<A>) =>
-  pipe(
-    actions,
-    M.matchW('action')({
-      DECODE: decode,
-      ENCODE: encode
-    })
-  ) as E.Either<CustomErrorsMessage | SyntaxError, R>
