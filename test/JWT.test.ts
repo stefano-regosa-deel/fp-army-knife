@@ -1,7 +1,8 @@
 import { pipe } from 'fp-ts/lib/function'
 import * as E from 'fp-ts/Either'
 import * as O from 'fp-ts/Option'
-import { ERROR, Jwt } from '../src/jwt'
+import { CustomErrorsMessage, ERROR, Jwt } from '../src/jwt'
+import { JsonWebTokenError } from 'jsonwebtoken'
 
 describe('decode a JWT', () => {
   it('should handle null or undefined', () => {
@@ -30,13 +31,13 @@ describe('encode a JWT', () => {
     const encoded = Jwt.encode({
       value: { data: decodedMock },
       secretOrPrivateKey: 'secret',
-      options: O.some({algorithm:'HS256'})
+      options: O.some({ algorithm: 'HS256' })
     })
 
     const decoded = pipe(
       encoded,
       E.chain((x) => Jwt.decode<{ data: typeof decodedMock }>({ value: x })),
-      E.map(({data}) => data)
+      E.map(({ data }) => data)
     )
 
     expect(decoded).toStrictEqual(E.right(decodedMock))
@@ -50,13 +51,22 @@ describe('encode a JWT', () => {
       exp
     }
 
-    const encoded = Jwt.encode({
+    const encoded: E.Either<Error | JsonWebTokenError, string> = Jwt.encode({
       value: { data: decodedMock },
       secretOrPrivateKey: 'secret',
       options: O.none
     })
 
-    const decoded = pipe(
+    const decoded: E.Either<
+      CustomErrorsMessage | SyntaxError,
+      {
+        data: {
+          job: string
+          name: string
+          exp: number
+        }
+      }
+    > = pipe(
       encoded,
       E.chain((x) => Jwt.decode<{ data: typeof decodedMock }>({ value: x })),
       E.map((x) => x.data)

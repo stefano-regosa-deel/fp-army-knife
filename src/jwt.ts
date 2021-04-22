@@ -18,12 +18,10 @@ export interface Decode {
 /**
  * @since 1.0.0
  */
-export interface Encode<A = unknown> {
+export interface Encode<DATA = unknown> {
   value: {
-    data: A
+    data: DATA
   }
-  secretOrPrivateKey: jwt.Secret
-  options: O.Option<jwt.SignOptions>
 }
 
 /**
@@ -65,13 +63,13 @@ const decode: <A>(v: Decode) => E.Either<CustomErrorsMessage | SyntaxError, Enco
     E.chain(J.parse)
   ) as E.Either<CustomErrorsMessage | SyntaxError, Encode<any>['value']>
 
-const sign = <A>(
-  payload: Encode<A>['value'],
+const sign = <Payload>(
+  payload: Encode<Payload>['value'],
   secretOrPrivateKey: jwt.Secret,
-  options: O.Option<jwt.SignOptions>
+  maybeOptions: O.Option<jwt.SignOptions>
 ): string =>
   pipe(
-    options,
+    maybeOptions,
     O.map((options) => jwt.sign(payload, secretOrPrivateKey, options)),
     O.getOrElse(() => jwt.sign(payload, secretOrPrivateKey))
   )
@@ -79,11 +77,9 @@ const sign = <A>(
 /**
  * @since 1.0.0
  */
-const encode: (value: Encode<unknown>) => E.Either<Error | jwt.JsonWebTokenError, string> = ({
-  value,
-  secretOrPrivateKey,
-  options
-}) =>
+const encode: (
+  value: Encode<unknown> & { secretOrPrivateKey: jwt.Secret; options: O.Option<jwt.SignOptions> }
+) => E.Either<Error | jwt.JsonWebTokenError, string> = ({ value, secretOrPrivateKey, options }) =>
   pipe(
     value,
     E.fromNullable(new Error(ERROR.NULL_OR_UNDEFINED)),

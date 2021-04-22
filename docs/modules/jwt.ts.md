@@ -6,7 +6,7 @@ parent: Modules
 
 ## jwt overview
 
-Added in vv1.0.0
+Added in v1.0.0
 
 ---
 
@@ -31,7 +31,7 @@ Added in vv1.0.0
 export type CustomErrorsMessage = typeof ERROR[keyof typeof ERROR]
 ```
 
-Added in vv1.0.0
+Added in v1.0.0
 
 ## Decode (interface)
 
@@ -43,7 +43,7 @@ export interface Decode {
 }
 ```
 
-Added in vv1.0.0
+Added in v1.0.0
 
 ## ERROR
 
@@ -56,21 +56,21 @@ export declare const ERROR: {
 }
 ```
 
-Added in vv1.0.0
+Added in v1.0.0
 
 ## Encode (interface)
 
 **Signature**
 
 ```ts
-export interface Encode<A = unknown> {
+export interface Encode<DATA = unknown> {
   value: {
-    data: A
+    data: DATA
   }
 }
 ```
 
-Added in vv1.0.0
+Added in v1.0.0
 
 ## Jwt
 
@@ -79,8 +79,10 @@ Added in vv1.0.0
 ```ts
 export declare const Jwt: {
   decode: <A>(v: Decode) => E.Either<'NO_SECOND_ELEMENT' | 'NULL_OR_UNDEFINED' | SyntaxError, { data: A }>
-  encode: (value: Encode<unknown>) => E.Either<Error, string>
+  encode: (
+    value: Encode<unknown> & { secretOrPrivateKey: jwt.Secret; options: O.Option<jwt.SignOptions> }
+  ) => E.Either<Error | jwt.JsonWebTokenError, string>
 }
 ```
 
-Added in vv1.0.0
+Added in v1.0.0
