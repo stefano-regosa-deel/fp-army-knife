@@ -20,10 +20,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Jwt = exports.ERROR = void 0;
+/**
+ * @since 1.0.0
+ */
 var function_1 = require("fp-ts/function");
+var jwt = __importStar(require("jsonwebtoken"));
 var E = __importStar(require("fp-ts/Either"));
 var A = __importStar(require("fp-ts/Array"));
 var J = __importStar(require("fp-ts/Json"));
+/**
+ * @since 1.0.0
+ */
 exports.ERROR = {
     NO_SECOND_ELEMENT: 'NO_SECOND_ELEMENT',
     NULL_OR_UNDEFINED: 'NULL_OR_UNDEFINED'
@@ -36,9 +43,24 @@ var takeSecondElement = function (xs) {
 };
 var replaceDashWithPlus = function (c) { return c.replace(/-/g, '+'); };
 var replaceUnderscoreWithSlash = function (c) { return c.replace(/_/g, '/'); };
-var decode = function (jwt) {
-    return function_1.pipe(jwt, E.fromNullable(new Error(exports.ERROR.NULL_OR_UNDEFINED)), E.chain(splitByDots), E.chain(takeSecondElement), E.map(function_1.flow(replaceDashWithPlus, replaceUnderscoreWithSlash)), E.chain(fromBuffer), E.chain(J.parse));
+/**
+ * @since 1.0.0
+ */
+var decode = function (_a) {
+    var value = _a.value;
+    return function_1.pipe(value, E.fromNullable(new Error(exports.ERROR.NULL_OR_UNDEFINED)), E.chain(splitByDots), E.chain(takeSecondElement), E.map(function_1.flow(replaceDashWithPlus, replaceUnderscoreWithSlash)), E.chain(fromBuffer), E.chain(J.parse));
 };
+/**
+ * @since 1.0.0
+ */
+var encode = function (_a) {
+    var value = _a.value;
+    return function_1.pipe(value, E.fromNullable(new Error(exports.ERROR.NULL_OR_UNDEFINED)), E.map(function (value) { return jwt.sign(value, 'S'); }));
+};
+/**
+ * @since 1.0.0
+ */
 exports.Jwt = {
-    decode: decode
+    decode: decode,
+    encode: encode
 };
