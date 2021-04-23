@@ -1,3 +1,7 @@
 node_modules
 coverage
 dist
+coverage/clover.xml
+coverage/coverage-final.json
+coverage/lcov-report/index.html
+coverage/lcov-report/jwt.ts.html
