@@ -12,7 +12,7 @@ Choose the right checklist for the change that you're making:
 ## Feature
 
 - [ ] Related issues linked using `fixes #number`
-- [ ] Integration tests added
+- [ ] Unit tests added
 - [ ] Documentation added
 
 ## Documentation / Examples
