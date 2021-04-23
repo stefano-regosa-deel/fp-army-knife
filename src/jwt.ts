@@ -52,7 +52,7 @@ const replaceUnderscoreWithSlash = (c: string): string => c.replace(/_/g, '/')
 /**
  * @since 1.0.0
  */
-const decode: <A>(v: Decode) => E.Either<CustomErrorsMessage | SyntaxError, Encode<A>['value']> = ({ value }) =>
+const decode: <JWT>(v: Decode) => E.Either<CustomErrorsMessage | SyntaxError, Encode<JWT>['value']> = ({ value }) =>
   pipe(
     value,
     E.fromNullable(new Error(ERROR.NULL_OR_UNDEFINED)),
@@ -83,7 +83,7 @@ const encode: (
   pipe(
     value,
     E.fromNullable(new Error(ERROR.NULL_OR_UNDEFINED)),
-    E.map((value) => sign(value, secretOrPrivateKey, options))
+    E.map((x) => sign(x, secretOrPrivateKey, options))
   )
 
 /**

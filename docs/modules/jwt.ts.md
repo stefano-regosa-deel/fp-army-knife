@@ -78,7 +78,7 @@ Added in v1.0.0
 
 ```ts
 export declare const Jwt: {
-  decode: <A>(v: Decode) => E.Either<'NO_SECOND_ELEMENT' | 'NULL_OR_UNDEFINED' | SyntaxError, { data: A }>
+  decode: <JWT>(v: Decode) => E.Either<'NO_SECOND_ELEMENT' | 'NULL_OR_UNDEFINED' | SyntaxError, { data: JWT }>
   encode: (
     value: Encode<unknown> & { secretOrPrivateKey: jwt.Secret; options: O.Option<jwt.SignOptions> }
   ) => E.Either<Error | jwt.JsonWebTokenError, string>

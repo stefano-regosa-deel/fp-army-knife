@@ -53,7 +53,7 @@ describe('encode a JWT', () => {
 
     const encoded: E.Either<Error | JsonWebTokenError, string> = Jwt.encode({
       value: { data: decodedMock },
-      secretOrPrivateKey: 'secret',
+      secretOrPrivateKey: 'secret_key',
       options: O.none
     })
 
