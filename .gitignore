@@ -1,5 +1,4 @@
 node_modules
-coverage
 dist
 coverage/clover.xml
 coverage/coverage-final.json
