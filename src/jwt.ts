@@ -1,5 +1,8 @@
 /**
  * @since 1.0.0
+ * @description
+ *  JWT Encode and Decode
+ *
  */
 import { pipe, flow } from 'fp-ts/function'
 import * as jwt from 'jsonwebtoken'
@@ -12,15 +15,15 @@ import * as O from 'fp-ts/Option'
  * @since 1.0.0
  */
 export interface Decode {
-  value: string
+  readonly value: string
 }
 
 /**
  * @since 1.0.0
  */
 export interface Encode<DATA = unknown> {
-  value: {
-    data: DATA
+  readonly value: {
+    readonly data: DATA
   }
 }
 
@@ -50,6 +53,8 @@ const replaceDashWithPlus = (c: string): string => c.replace(/-/g, '+')
 const replaceUnderscoreWithSlash = (c: string): string => c.replace(/_/g, '/')
 
 /**
+ * @description
+ * Decode a JWT into a string
  * @since 1.0.0
  */
 const decode: <JWT>(v: Decode) => E.Either<CustomErrorsMessage | SyntaxError, Encode<JWT>['value']> = ({ value }) =>
@@ -75,10 +80,12 @@ const sign = <Payload>(
   )
 
 /**
+ * @description
+ * Encode a string in a JWT
  * @since 1.0.0
  */
 const encode: (
-  value: Encode<unknown> & { secretOrPrivateKey: jwt.Secret; options: O.Option<jwt.SignOptions> }
+  value: Encode<unknown> & { readonly secretOrPrivateKey: jwt.Secret; readonly options: O.Option<jwt.SignOptions> }
 ) => E.Either<Error | jwt.JsonWebTokenError, string> = ({ value, secretOrPrivateKey, options }) =>
   pipe(
     value,

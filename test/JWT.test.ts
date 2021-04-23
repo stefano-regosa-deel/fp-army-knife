@@ -1,3 +1,4 @@
+/* eslint-disable functional/no-expression-statement */
 import { pipe } from 'fp-ts/lib/function'
 import * as E from 'fp-ts/Either'
 import * as O from 'fp-ts/Option'
@@ -26,7 +27,7 @@ describe('encode a JWT', () => {
       job: 'Senior Software Engineer',
       name: 'Stefano Regosa',
       exp
-    }
+    } as const
 
     const encoded = Jwt.encode({
       value: { data: decodedMock },
@@ -36,7 +37,7 @@ describe('encode a JWT', () => {
 
     const decoded = pipe(
       encoded,
-      E.chain((x) => Jwt.decode<{ data: typeof decodedMock }>({ value: x })),
+      E.chain((x) => Jwt.decode({ value: x })),
       E.map(({ data }) => data)
     )
 
@@ -49,7 +50,7 @@ describe('encode a JWT', () => {
       job: 'Senior Software Engineer',
       name: 'Stefano Regosa',
       exp
-    }
+    } as const
 
     const encoded: E.Either<Error | JsonWebTokenError, string> = Jwt.encode({
       value: { data: decodedMock },
@@ -60,15 +61,15 @@ describe('encode a JWT', () => {
     const decoded: E.Either<
       CustomErrorsMessage | SyntaxError,
       {
-        data: {
-          job: string
-          name: string
-          exp: number
+        readonly data: {
+          readonly job: string
+          readonly name: string
+          readonly exp: number
         }
       }
     > = pipe(
       encoded,
-      E.chain((x) => Jwt.decode<{ data: typeof decodedMock }>({ value: x })),
+      E.chain((x) => Jwt.decode<{ readonly data: typeof decodedMock }>({ value: x })),
       E.map((x) => x.data)
     )
 

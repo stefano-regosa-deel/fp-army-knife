@@ -39,7 +39,7 @@ Added in v1.0.0
 
 ```ts
 export interface Decode {
-  value: string
+  readonly value: string
 }
 ```
 
@@ -64,8 +64,8 @@ Added in v1.0.0
 
 ```ts
 export interface Encode<DATA = unknown> {
-  value: {
-    data: DATA
+  readonly value: {
+    readonly data: DATA
   }
 }
 ```
@@ -78,9 +78,9 @@ Added in v1.0.0
 
 ```ts
 export declare const Jwt: {
-  decode: <JWT>(v: Decode) => E.Either<'NO_SECOND_ELEMENT' | 'NULL_OR_UNDEFINED' | SyntaxError, { data: JWT }>
+  decode: <JWT>(v: Decode) => E.Either<'NO_SECOND_ELEMENT' | 'NULL_OR_UNDEFINED' | SyntaxError, { readonly data: JWT }>
   encode: (
-    value: Encode<unknown> & { secretOrPrivateKey: jwt.Secret; options: O.Option<jwt.SignOptions> }
+    value: Encode<unknown> & { readonly secretOrPrivateKey: jwt.Secret; readonly options: O.Option<jwt.SignOptions> }
   ) => E.Either<Error | jwt.JsonWebTokenError, string>
 }
 ```
