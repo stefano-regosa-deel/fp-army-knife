@@ -1,0 +1,47 @@
+{
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "rules": {
+    "no-shadow": "warn",
+    "no-async-promise-executor": "off",
+    "no-case-declarations": "off",
+    "no-alert": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:functional/external-recommended",
+        "plugin:functional/recommended",
+        "plugin:functional/stylitic",
+        "plugin:functional/no-mutations"
+      ],
+      "plugins": ["@typescript-eslint", "functional"],
+      "rules": {
+        "@typescript-eslint/camelcase": 0,
+        "@typescript-eslint/member-delimiter-style": 0,
+        "@typescript-eslint/consistent-type-assertions": 0,
+        "@typescript-eslint/no-empty-function": 0,
+        "@typescript-eslint/explicit-function-return-type": 1,
+        "functional/prefer-tacit": 0,
+        "functional/no-return-void": 1,
+        "functional/no-mixed-type": 0,
+        "functional/immutable-data": 1,
+        "functional/no-class": 0,
+        "functional/no-loop-statement": 1,
+        "functional/prefer-readonly-type": 1,
+        "functional/prefer-type-literal": 0,
+        "functional/functional-parameters": 0
+      }
+    }
+  ]
+}
