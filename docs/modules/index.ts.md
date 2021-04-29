@@ -25,7 +25,9 @@ Added in v1.0.0
 
 ```ts
 export declare const Jwt: {
-  decode: <JWT>(v: Decode) => Either<'NO_SECOND_ELEMENT' | 'NULL_OR_UNDEFINED' | SyntaxError, { readonly data: JWT }>
+  decode: <JWT>({
+    value,
+  }: Decode) => Either<'NO_SECOND_ELEMENT' | 'NULL_OR_UNDEFINED' | SyntaxError, { readonly data: JWT }>
   encode: (
     value: Encode<unknown> & { readonly secretOrPrivateKey: Secret; readonly options: Option<SignOptions> }
   ) => Either<Error | JsonWebTokenError, string>

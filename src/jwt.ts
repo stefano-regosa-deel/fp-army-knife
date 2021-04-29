@@ -7,7 +7,7 @@
 import { pipe, flow } from 'fp-ts/function'
 import * as jwt from 'jsonwebtoken'
 import * as E from 'fp-ts/Either'
-import * as A from 'fp-ts/Array'
+import * as RA from 'fp-ts/ReadonlyArray'
 import * as J from 'fp-ts/Json'
 import * as O from 'fp-ts/Option'
 
@@ -46,8 +46,11 @@ const BufferFromb64Encoded = (b64Encoded: string): string => Buffer.from(b64Enco
 
 const fromBuffer = (e: string): E.Either<Error, string> => E.right(BufferFromb64Encoded(e))
 
-const takeSecondElement = <T>(xs: ReadonlyArray<T>): E.Either<Error, T> =>
-  E.fromOption(() => new Error(ERROR.NO_SECOND_ELEMENT))(A.lookup(1, xs as Array<T>))
+const takeSecondElement = <T>(ra: ReadonlyArray<T>): E.Either<Error, T> =>
+  pipe(
+    RA.lookup(1, ra),
+    E.fromOption(() => new Error(ERROR.NO_SECOND_ELEMENT))
+  )
 
 const replaceDashWithPlus = (c: string): string => c.replace(/-/g, '+')
 const replaceUnderscoreWithSlash = (c: string): string => c.replace(/_/g, '/')
@@ -57,7 +60,7 @@ const replaceUnderscoreWithSlash = (c: string): string => c.replace(/_/g, '/')
  * Decode a JWT into a string
  * @since 1.0.0
  */
-const decode: <JWT>(v: Decode) => E.Either<CustomErrorsMessage | SyntaxError, Encode<JWT>['value']> = ({ value }) =>
+const decode = <JWT>({ value }: Decode): E.Either<CustomErrorsMessage | SyntaxError, Encode<JWT>['value']> =>
   pipe(
     value,
     E.fromNullable(new Error(ERROR.NULL_OR_UNDEFINED)),
@@ -66,7 +69,7 @@ const decode: <JWT>(v: Decode) => E.Either<CustomErrorsMessage | SyntaxError, En
     E.map(flow(replaceDashWithPlus, replaceUnderscoreWithSlash)),
     E.chain(fromBuffer),
     E.chain(J.parse)
-  ) as E.Either<CustomErrorsMessage | SyntaxError, Encode<any>['value']>
+  ) as E.Either<CustomErrorsMessage | SyntaxError, Encode<JWT>['value']>
 
 const sign = <Payload>(
   payload: Encode<Payload>['value'],
