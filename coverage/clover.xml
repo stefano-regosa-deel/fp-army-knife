@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1619557394215" clover="3.2.0">
-  <project timestamp="1619557394215" name="All files">
+<coverage generated="1619679434123" clover="3.2.0">
+  <project timestamp="1619679434123" name="All files">
     <metrics statements="24" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="13" elements="37" coveredelements="37" complexity="0" loc="24" ncloc="24" packages="1" files="1" classes="1"/>
     <file name="jwt.ts" path="/Users/stefano/Project/personal/fp-army-knife/src/jwt.ts">
       <metrics statements="24" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="13"/>
