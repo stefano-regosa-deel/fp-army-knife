@@ -3,7 +3,7 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ * ]
   pull_request:
     branches: [ master ]
 
@@ -23,15 +23,16 @@ jobs:
       with:
         node-version: ${{ matrix.node_version }}
     
-    # - name: Codecov
-      # uses: codecov/codecov-action@v1.1.1
-      # with:
-        # flags: unittests # optional
-        # name: codecov-umbrella # optional
-        # fail_ci_if_error: true # optional (default = false)
       
     - name: npm install, build and test
       run: |
         yarn install
         yarn test
     
+    - name: Codecov
+      uses: codecov/codecov-action@v1.1.1
+      with:
+        flags: unittests # optional
+        name: codecov-umbrella # optional
+        fail_ci_if_error: true # optional (default = false)
+        directory: ./coverage/
