@@ -12,12 +12,6 @@ body:
       value: If you leave out sections there is a high likelihood it will be moved to the GitHub Discussions "Help" section.
   - type: input
     attributes:
-      label: What example does this report relate to?
-      description: 'For example: with-styled-components'
-    validations:
-      required: true
-  - type: input
-    attributes:
       label: What version are you using?
       description: 'For example: 1.0.1'
     validations:
@@ -32,12 +26,6 @@ body:
     attributes:
       label: What browser are you using?
       description: 'For example: Chrome, Safari'
-    validations:
-      required: true
-  - type: input
-    attributes:
-      label: What operating system are you using?
-      description: 'For example: macOS, Windows'
     validations:
       required: true
   - type: textarea

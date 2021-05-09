@@ -1,44 +1,78 @@
-import * as E from 'fp-ts/Either'
+/* eslint-disable functional/no-expression-statement */
 import { pipe } from 'fp-ts/lib/function'
-import { ERROR, Jwt } from '../src/jwt'
+import * as E from 'fp-ts/Either'
+import * as O from 'fp-ts/Option'
+import { CustomErrorsMessage, ERROR, Jwt } from '../src/jwt'
+import { JsonWebTokenError } from 'jsonwebtoken'
 
 describe('decode a JWT', () => {
   it('should handle null or undefined', () => {
-    expect(Jwt({ action: 'DECODE', value: 'a' })).toStrictEqual(E.left(new Error(ERROR.NO_SECOND_ELEMENT)))
+    const enc = Jwt.decode({ value: 'aaa' })
+
+    expect(enc).toStrictEqual(E.left(new Error(ERROR.NO_SECOND_ELEMENT)))
   })
 
   it('should return a JSONparse SyntaxError', () => {
-    expect(Jwt({ action: 'DECODE', value: 'áaa.bbb.ccc' })).toStrictEqual(
+    expect(Jwt.decode({ value: 'áaa.bbb.ccc' })).toStrictEqual(
       E.left(new SyntaxError('Unexpected token m in JSON at position 0'))
     )
   })
 })
 
 describe('encode a JWT', () => {
-  it('should return an encoded JWT', () => {
+  it('should return an encoded JWT with selected algoritm', () => {
     const exp = Date.now()
+
     const decodedMock = {
       job: 'Senior Software Engineer',
       name: 'Stefano Regosa',
-      exp 
-    }
-    const encoded = Jwt<typeof decodedMock, string>({ action: 'ENCODE', value: decodedMock })
+      exp
+    } as const
+
+    const encoded = Jwt.encode({
+      value: { data: decodedMock },
+      secretOrPrivateKey: 'secret',
+      options: O.some({ algorithm: 'HS256' })
+    })
 
     const decoded = pipe(
       encoded,
-      E.chain((encoded) => Jwt<string, typeof decodedMock>({ action: 'DECODE', value: encoded }))
+      E.chain((x) => Jwt.decode({ value: x })),
+      E.map(({ data }) => data)
     )
+
     expect(decoded).toStrictEqual(E.right(decodedMock))
   })
+  it('should return an encoded JWT with selected algoritm', () => {
+    const exp = Date.now()
 
-  //it('should handle nullable', () => {
-  // const encoded = Jwt.encode(null)
+    const decodedMock = {
+      job: 'Senior Software Engineer',
+      name: 'Stefano Regosa',
+      exp
+    } as const
 
-  //  const decoded = pipe(
-  //    encoded,
-  //    E.chain((encoded) => Jwt.decode<{ data: any }>(encoded)),
-  //    E.map(({ data }) => data)
-  //  )
-  //  expect(decoded).toStrictEqual(E.left(new Error(ERROR.NULL_OR_UNDEFINED)))
-  //})
+    const encoded: E.Either<Error | JsonWebTokenError, string> = Jwt.encode({
+      value: { data: decodedMock },
+      secretOrPrivateKey: 'secret_key',
+      options: O.none
+    })
+
+    const decoded: E.Either<
+      CustomErrorsMessage | SyntaxError,
+      {
+        readonly data: {
+          readonly job: string
+          readonly name: string
+          readonly exp: number
+        }
+      }
+    > = pipe(
+      encoded,
+      E.chain((x) => Jwt.decode<{ readonly data: typeof decodedMock }>({ value: x })),
+      E.map((x) => x.data)
+    )
+
+    expect(decoded).toStrictEqual(E.right(decodedMock))
+  })
 })
