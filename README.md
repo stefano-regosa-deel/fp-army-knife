@@ -9,6 +9,6 @@
 # fp-army-knife
 🔪 Your ( 100% code-covered  🪖 )  ***Functional programming*** army knife 🎖️
 
-[![CI](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml) [![CI](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml/badge.svg?branch=master&event=issues)](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/nrdlab/fp-army-knife/branch/master/graph/badge.svg?token=NSNM5WL3CI)](https://codecov.io/gh/nrdlab/fp-army-knife)[![CI](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml) [![CI](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml/badge.svg?branch=master&event=issues)](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml)
 
 ![alt text](./cover.jpeg "title")
