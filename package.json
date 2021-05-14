@@ -31,8 +31,8 @@
     "build": "tsc -p ./tsconfig.build.json && tsc -p ./tsconfig.build-es6.json && ts-node scripts/build",
     "postbuild": "prettier --loglevel=silent --write \"./dist/**/*.ts\"",
     "prepublishOnly": "ts-node scripts/pre-publish",
-    "doctoc": "doctoc README.md --title \"**Table of contents**\"",
-    "docs": "yarn doctoc && docs-ts && cp CHANGELOG.md ./docs"
+    "docs": " docs-ts && cp CHANGELOG.md ./docs",
+    "release": "ts-node scripts/release"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
@@ -40,7 +40,6 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "docs-ts": "^0.5.1",
-    "doctoc": "^1.4.0",
     "eslint": "^7.24.0",
     "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-functional": "^3.2.1",
