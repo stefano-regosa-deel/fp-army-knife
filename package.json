@@ -1,6 +1,6 @@
 {
   "name": "fp-army-knife",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "100% code-covered - Typescript Functional Programming army knife",
   "main": "lib/index.js",
   "module": "es6/index.js",
@@ -33,6 +33,7 @@
     "postbuild": "prettier --loglevel=silent --write \"./dist/**/*.ts\"",
     "prepublishOnly": "ts-node scripts/pre-publish",
     "docs": " docs-ts && cp CHANGELOG.md ./docs",
+    "prerelease": "npm run build",
     "release": "ts-node scripts/release"
   },
   "devDependencies": {
