@@ -1,13 +1,24 @@
 {
   "name": "fp-army-knife",
-  "version": "0.0.1",
-  "description": "fp-army-knife",
+  "version": "1.0.0",
+  "description": "100% code-covered - Typescript Functional Programming army knife",
   "main": "lib/index.js",
   "module": "es6/index.js",
   "typings": "lib/index.d.ts",
   "author": "Stefano Regosa <regosas@gmail.com>",
   "sideEffects": false,
   "homepage": "https://github.com/nrdlab/fp-army-knife",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrdlab/fp-army-knife.git"
+  },
+  "keywords": [
+    "fp-ts",
+    "typescript",
+    "functional-programming",
+    "fp-army-knife"
+  ],
+  "license": "MIT",
   "scripts": {
     "lint": "eslint ./src",
     "jest-clear-cache": "jest --clearCache",
