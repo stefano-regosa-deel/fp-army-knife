@@ -1,6 +1,0 @@
-{
-  "main": "../lib/jwt.js",
-  "module": "../es6/jwt.js",
-  "typings": "../lib/jwt.d.ts",
-  "sideEffects": false
-}
