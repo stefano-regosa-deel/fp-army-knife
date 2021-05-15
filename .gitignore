@@ -1,4 +1,4 @@
 node_modules
-dist/
-coverage/lcov-report
-coverage/lcov.info
+coverage/**
+package.json
+dist/**

@@ -1,14 +1,30 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of contents**
 
-- [fp-army-knife](#fp-army-knife)
+<p align="center">
+  <a href="https://github.com/nrdlab/fp-army-knife">
+    <img src="./cover.png" height="300">
+    <h1 align="center">fp-army-knife</h1>
+  </a>
+ 
+</p>
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+Your 🪖 `100% code-covered` 🔪  **_Functional programming_** 🎖️ `fp-army-knife`  
 
-# fp-army-knife
-🔪 Your ( 100% code-covered  🪖 )  ***Functional programming*** army knife 🎖️
+<a aria-label="Codecov" href="https://codecov.io/gh/nrdlab/fp-army-knife/branch/master/graph/badge.svg?token=NSNM5WL3CI">
+    <img alt="" src="https://codecov.io/gh/nrdlab/fp-army-knife/branch/master/graph/badge.svg?token=NSNM5WL3CI">
+</a>
 
-[![CI](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml) [![CI](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml/badge.svg?branch=master&event=issues)](https://github.com/nrdlab/fp-army-knife/actions/workflows/ci.yml)
+## Installation
 
-![alt text](./cover.jpeg "title")
+```sh
+yarn fp-army-knife
+# or
+npm install fp-army-knife
+```
+
+## Contributing
+
+Please see our [contributing.md](/contributing.md).
+
+## Authors
+
+- Stefano Regosa ([@nrdlab](https://twitter.com/thenrdlab))

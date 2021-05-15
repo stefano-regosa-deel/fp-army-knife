@@ -1,4 +1,5 @@
 {
+  
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "rules": {
     "no-shadow": "warn",
@@ -9,6 +10,7 @@
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],
+      "excludedFiles":["./scripts/**"],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "project": "./tsconfig.json"

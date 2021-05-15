@@ -1,13 +1,25 @@
 {
   "name": "fp-army-knife",
-  "version": "0.0.1",
-  "description": "fp-army-knife",
+  "version": "1.0.1",
+  "description": "100% code-covered - Typescript Functional Programming army knife",
   "main": "lib/index.js",
   "module": "es6/index.js",
   "typings": "lib/index.d.ts",
   "author": "Stefano Regosa <regosas@gmail.com>",
   "sideEffects": false,
   "homepage": "https://github.com/nrdlab/fp-army-knife",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrdlab/fp-army-knife.git"
+  },
+  "keywords": [
+    "fp-ts",
+    "typescript",
+    "functional-programming",
+    "fp-army-knife"
+  ],
+  "private":false,
+  "license": "MIT",
   "scripts": {
     "lint": "eslint ./src",
     "jest-clear-cache": "jest --clearCache",
@@ -20,8 +32,9 @@
     "build": "tsc -p ./tsconfig.build.json && tsc -p ./tsconfig.build-es6.json && ts-node scripts/build",
     "postbuild": "prettier --loglevel=silent --write \"./dist/**/*.ts\"",
     "prepublishOnly": "ts-node scripts/pre-publish",
-    "doctoc": "doctoc README.md --title \"**Table of contents**\"",
-    "docs": "yarn doctoc && docs-ts && cp CHANGELOG.md ./docs"
+    "docs": " docs-ts && cp CHANGELOG.md ./docs",
+    "prerelease": "npm run build",
+    "release": "ts-node scripts/release"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
@@ -29,7 +42,6 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "docs-ts": "^0.5.1",
-    "doctoc": "^1.4.0",
     "eslint": "^7.24.0",
     "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-functional": "^3.2.1",
