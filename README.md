@@ -26,6 +26,11 @@
   </pre>
 </p>
 
+<br/>
+
+##### TL;DR  
+`fp-army-knife` is a collection of small portable ***`TypeScript`*** tools designed with an eye on `full test coverage` and `clean code` with [TDD](https://www.martinfowler.com/bliki/TestDrivenDevelopment.html) and following the [Functional Programming](https://en.wikipedia.org/wiki/Functional_programming) paradigm. 
+
 ## Installation
 
 ```sh
@@ -40,9 +45,9 @@ Please see our [contributing.md](/contributing.md).
 
 ## Content
 
-| version 🔪 | tool 🔧            | description 📋                   |
-| ---------- | ------------------ | -------------------------------- |
-| `1.0.2`    | [Jwt](/src/jwt.ts) | Json Web Token `encode`/`decode` |
+| version 🔪 | tool 🔧            | description 📋                     |
+| ---------- | ------------------ | ---------------------------------  |
+| `1.0.2`    | [Jwt](/src/jwt.ts) | Json Web Token `encode` / `decode` |
 
 ## Authors
 
