@@ -20,10 +20,11 @@
 <img alt="GitHub Workflow Status (event)" src="https://img.shields.io/github/workflow/status/nrdlab/fp-army-knife/ci?style=for-the-badge"/>
 </a>
 </p>
-<center>
-<p><i>100%</i> 🪖 
-<code> code covered</code> <pre><code><i>Functional programming</code></i><code> 🔪 army knife</code></pre></p>
-</center>
+<p align="center">
+  <i>100%</i> 🪖 
+  <code> code covered</code> <i>Functional programming </i> 🔪 <code> army knife</code>
+  </pre>
+</p>
 
 ## Installation
 
