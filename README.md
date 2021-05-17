@@ -4,7 +4,7 @@
     <img src="./cover.png" height="300"/>
     <h1 align="center">fp-army-knife</h1>
   </a> 
-</p>
+</p> 
 
 <p align="center">
   <a href="https://www.npmjs.com/package/fp-army-knife"
@@ -17,7 +17,7 @@
 <img alt="NPM licence" src="https://img.shields.io/npm/l/fp-army-knife?style=for-the-badge"/>
 </a>
 <a href="https://github.com/nrdlab/fp-army-knife/actions">
-<img alt="GitHub Workflow Status (event)" src="https://img.shields.io/github/workflow/status/nrdlab/fp-army-knife/ci?style=for-the-badge"/>
+<img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/nrdlab/fp-army-knife/master?style=for-the-badge"/>
 </a>
 </p>
 <p align="center">
